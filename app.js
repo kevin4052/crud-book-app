@@ -15,7 +15,7 @@ const app = express();
 
 //                                  database name
 mongoose //                              |
-    .connect("mongodb://localhost/express-movies-example", {
+    .connect("mongodb://localhost/crud-books-app", {
         useCreateIndex: true,
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -57,7 +57,7 @@ app.locals.title = "Express Template";
 // ===================== ROUTES =====================
 
 app.use("/", require("./routes/index"));
-// app.use("/movies", require("./routes/movie-routes/movie"));
+app.use("/add-book", require("./routes/add-book/add-book"));
 // app.use("/search", require("./routes/search-routes/search"));
 
 // =================== END ROUTES ===================
