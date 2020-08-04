@@ -3,6 +3,10 @@ body {
     padding: 0;
 }
 
+nav > a {
+    margin: 1rem;
+}
+
 .container {
     display: flex;
     justify-content: space-evenly;

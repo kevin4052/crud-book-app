@@ -13,7 +13,7 @@ const app = express();
 
 // ========== MONGOOSE CONNECTION SETUP =============
 
-require("./config/mongoose-setup")
+require("./config/mongoose-setup");
 
 // ======== END MONGOOSE CONNECTION SETUP ===========
 

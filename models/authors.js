@@ -3,7 +3,7 @@ const { Schema, model } = mongoose;
 
 const authorSchema = new Schema(
     {
-        firsName : {
+        firstName : {
             type: String,
             required: true
         },

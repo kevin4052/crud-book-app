@@ -1,0 +1,27 @@
+<h1>{{ author.firstName }} {{ author.lastName }}</h1>
+<h4>BOD: {{ author.dob }}</h4>
+<img src="{{ author.picture }}" alt="Picture of {{ author.firstName }} {{ author.lastName }}">
+
+<div>
+    <form action="/authors/delete/{{ author._id }}" method="post">
+    <button>Delete</button>
+    </form>
+    {{!-- <form action="/authors/update/{{ author._id }}" method="post">
+    <button>Update</button>
+    </form> --}}
+</div>
+<br>
+<hr>
+<div>
+    <form action="/authors/update/{{author._id}}" method="post">
+        <label for="inputFirstName">Fist name: <input id="inputFirstName" type="text" name="firstName" value="{{author.firstName}}"></label><br>
+        <br>
+        <label for="inputLastName">Last name: <input id="inputLastName" type="text" name="lastName" value="{{author.lastName}}"></label><br>
+        <br>
+        <label for="inputDatOfBirth">DOB: <input id="inputDatOfBirth" type="text" name="dob" value="{{author.dob}}"></label><br>
+        <br>
+        <label for="inputPicture">Picture: <input id="inputPicture" type="text" name="picture" value="{{author.picture}}"></label><br>
+        <br>
+        <button>Submit</button>
+    </form>
+</div>
