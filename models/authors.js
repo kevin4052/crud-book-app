@@ -10,10 +10,7 @@ const authorSchema = new Schema(
         lastName: { type: String },
         dob: { type: String },
         died: { type: Boolean },
-        genre: { 
-            type: [{type: String}],
-            enum: ["Fantasy", "Drama", "fiction", "SciFi"]
-        },
+        picture: { type: String },
         books: { type: [{ type: Schema.Types.ObjectId, ref: "Book" }] }
     },
     {

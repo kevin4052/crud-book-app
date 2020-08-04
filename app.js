@@ -43,6 +43,7 @@ app.locals.title = "CRUD Book App";
 
 app.use("/", require("./routes/index"));
 app.use("/books", require("./routes/book-routes/books"));
+app.use("/authors", require("./routes/author-routes/authors"));
 
 // =================== END ROUTES ===================
 
