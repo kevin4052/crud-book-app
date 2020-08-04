@@ -12,7 +12,8 @@ const bookSchema = new Schema(
         genre: { 
             type: [{type: String}],
             enum: ["Fantasy", "Drama", "fiction", "SciFi"]
-        }
+        },
+        coverArt: { type: String }
     },
     {
         timestamps: true

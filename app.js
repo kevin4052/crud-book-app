@@ -50,14 +50,14 @@ app.use(express.static(path.join(__dirname, "public")));
 // ============== GLOBAL VARIABLES ==================
 
 // default value for title local
-app.locals.title = "Express Template";
+app.locals.title = "CRUD Book App";
 
 // ============ END GLOBAL VARIABLES ================
 
 // ===================== ROUTES =====================
 
 app.use("/", require("./routes/index"));
-app.use("/add-book", require("./routes/add-book/add-book"));
+app.use("/books", require("./routes/book-routes/books"));
 // app.use("/search", require("./routes/search-routes/search"));
 
 // =================== END ROUTES ===================

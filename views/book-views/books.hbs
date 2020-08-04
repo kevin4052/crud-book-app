@@ -1,10 +1,9 @@
 <h1>Your books</h1>
-<div>
-    <ul>
+<div class="container">
       {{#each books}}
-        <li>
+        <div class="infoCard">
             <h3>{{ this.title }}</h3>
-        </li>
+            <a href="/books/details/{{ this._id }}"><img src="{{ this.coverArt }}" alt="{{ this.title }} cover art"></a>            
+        </div>
     {{/each}}  
-    </ul>    
 </div>
