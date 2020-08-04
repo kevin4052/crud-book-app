@@ -13,22 +13,7 @@ const app = express();
 
 // ========== MONGOOSE CONNECTION SETUP =============
 
-//                                  database name
-mongoose //                              |
-    .connect("mongodb://localhost/crud-books-app", {
-        useCreateIndex: true,
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false,
-    })
-    .then((x) => {
-        console.log(
-            `Connected to Mongo! Database name: "${x.connections[0].name}"`
-        );
-    })
-    .catch((err) => {
-        console.error("Error connecting to mongo", err);
-    });
+require("./config/mongoose-setup")
 
 // ======== END MONGOOSE CONNECTION SETUP ===========
 
@@ -58,7 +43,6 @@ app.locals.title = "CRUD Book App";
 
 app.use("/", require("./routes/index"));
 app.use("/books", require("./routes/book-routes/books"));
-// app.use("/search", require("./routes/search-routes/search"));
 
 // =================== END ROUTES ===================
 

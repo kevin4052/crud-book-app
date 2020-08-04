@@ -1,2 +1,25 @@
 <h1>{{ book.title }}</h1>
+<h4>Author: {{ book.authors }}</h4>
+<h4>Published: {{ book.published }}</h4>
+<h4>Genre: {{ book.genre }}</h4>
 <img src="{{ book.coverArt }}" alt="">
+
+<div>
+    <form action="/books/delete/{{ book._id }}" method="post">
+    <button>Delete</button>
+    </form>
+    <form action="/books/update/{{ book._id }}" method="post">
+    <button>Update</button>
+    </form>
+</div>
+
+<div>
+    <form action="/books/update/{{book._id}}" method="post">
+        <label for="bookTitle">Book title: <input id="bookTitle" name="title" type="text" value="{{ book.title }}"></label><br><br>
+        {{!-- <label for="bookAuthor">Author: <input id="bookAuthor" name="authors" type="text" value="{{ book.author }}"></label><br><br> --}}
+        <label for="bookPublished">Published date: <input id="bookPublished" name="published" type="text" value="{{ book.published }}"></label><br><br>
+        <label for="bookGenre">Genre: <input id="bookGenre" name="genre" type="text" value="{{ book.genre }}"></label><br><br>
+        <label for="bookCoverArt">Cover art: <input id="bookCoverArt" name="coverArt" type="text" value="{{ book.coverArt }}"></label><br><br>
+        <button>Submit</button>
+    </form>
+</div>

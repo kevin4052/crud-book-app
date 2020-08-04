@@ -1,0 +1,9 @@
+<form action="/books/update/{{book._id}}" method="post">
+    <label for="bookTitle"><input id="bookTitle" name="title" type="text" value="{{ book.title }}"></label><br>
+    <label for="bookAuthor"><input id="bookAuthor" name="author" type="text" value="{{ book.author }}"></label><br>
+    <label for="bookPublished"><input id="bookPublished" name="published" type="text" value="{{ book.published }}"></label><br>
+    <label for="bookGenre"><input id="bookGenre" name="genre" type="text" value="{{ book.genre }}"></label><br>
+    <label for="bookCoverArt"><input id="bookCoverArt" name="coverArt" type="text" value="{{ book.coverArt }}"></label><br>
+    <br>
+    <button>Submit</button>
+</form>
