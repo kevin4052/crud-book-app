@@ -28,11 +28,11 @@ router.post('/add-author', (req, res, next) => {
 /*GET author details edit form page*/
 router.get('/details/edit/:authorId', (req, res, next) => {
   Author.findById(req.params.authorId)
-    .then(authorfromDB => {
+    .then(authorFromDB => {
       Book.find()
         .then(books => {
           const data = {
-            ...authorfromDB,
+            ...authorFromDB,
             books,
             edit: true
           };
@@ -45,9 +45,9 @@ router.get('/details/edit/:authorId', (req, res, next) => {
 
 router.get('/details/:authorId', (req, res, next) => {
   Author.findById(req.params.authorId)
-    .then(authorfromDB => {
+    .then(authorFromDB => {
       const data = {
-        ...authorfromDB,
+        ...authorFromDB,
         edit: false
       };
       console.log(data);
@@ -58,9 +58,10 @@ router.get('/details/:authorId', (req, res, next) => {
 /*POST author update*/
 router.post("/update/:authorId", (req, res, next) => {
   Author.findByIdAndUpdate(req.params.authorId, req.body, {new: true})
+    .populate('books')
     .then(updatedAuthor => {
-      console.log({ updatedAuthor });
-      res.redirect(`/authors/details/${updatedAuthor._id}`);
+              console.log({ updatedAuthor });
+              res.redirect(`/authors/details/${updatedAuthor._id}`);    
     }).catch(err => console.log(`Error updating author: ${err}`))
 })
 

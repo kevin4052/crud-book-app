@@ -5,6 +5,11 @@ body {
     color: rgb(74, 187, 240);
 }
 
+button:hover {
+    background-color: black;
+    color: white;
+}
+
 nav > a {
     margin: 1rem;
     text-decoration: none;

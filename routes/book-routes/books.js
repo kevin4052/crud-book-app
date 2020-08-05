@@ -26,10 +26,10 @@ router.post('/add-book', (req, res, next) => {
 
 /*GET book details page*/
 router.get('/details/:bookId', (req, res, next) => {
-  console.log({ body: req.body });
   Book.findById(req.params.bookId)
     .then(book => {
-    res.render("book-views/book-details", { book });
+      console.log(book);
+      res.render("book-views/book-details", { book });
   }).catch(err => console.log(`Error finding book by Id: ${err}`))
   
 })

@@ -15,7 +15,7 @@
             <div>
                 {{#each books}}
                     <div>
-                        <input id="input{{@index}}" name="movies" type="checkbox" value="{{_id}}">
+                        <input id="input{{@index}}" name="books" type="checkbox" value="{{_id}}">
                         <label for="input{{@index}}">{{title}}</label>
                     </div>
                 {{/each}}
@@ -25,8 +25,8 @@
         <br>
     {{else}}
 
-        <h4>BOD: {{ _doc.dob }}</h4>
         <img src="{{ _doc.picture }}" alt="Picture of {{ _doc.firstName }} {{ _doc.lastName }}">
+        <h4>BOD: {{ _doc.dob }}</h4>
 
         <div>
             <form action="/authors/delete/{{ _doc._id }}" method="post">
@@ -36,8 +36,21 @@
             <button>Edit Details</button>
             </form>
         </div>
-            
+
         <br>
+
+        <h3><u>Books</u></h3>
+        <br>
+        <div>
+            {{#each _doc.books}}
+            <div>
+                {{!-- <form action="/authors/remove-book/{{../_doc._id}}/{{_id}}" method="post"><button>Remove</button></form> --}}
+                <a href="/books/details/{{_id}}"><img src="{{coverArt}}" alt="Cover art for {{title}}"></a>
+                <h3>{{this.title}}</h3>
+            </div>
+            {{/each}}
+        </div>
+
     {{/if}}
 </div>
 

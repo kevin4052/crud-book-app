@@ -11,7 +11,9 @@ const authorSchema = new Schema(
         dob: { type: String },
         died: { type: Boolean },
         picture: { type: String },
-        books: { type: [{ type: Schema.Types.ObjectId, ref: "Book" }] }
+        books: { 
+            type: [{ type: Schema.Types.ObjectId, ref: "Book" }] 
+        }
     },
     {
         timestamps: true
