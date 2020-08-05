@@ -38,19 +38,20 @@ router.get('/details/edit/:authorId', (req, res, next) => {
           };
           console.log(data)
           res.render("author-views/author-details", data);
-        })
+        }).catch(err => console.log(`Error finding all books for author edit page: ${err}`))
   }).catch(err => console.log(`Error finding author by Id: ${err}`))
   
 })
 
 router.get('/details/:authorId', (req, res, next) => {
   Author.findById(req.params.authorId)
+    .populate('books')
     .then(authorFromDB => {
       const data = {
         ...authorFromDB,
         edit: false
       };
-      console.log(data);
+      console.log({data});
       res.render('author-views/author-details', data)
     }).catch(err => console.log(`Error finding author by Id: ${err}`))
 })
@@ -71,6 +72,19 @@ router.post("/delete/:authorId", (req, res, next) => {
     .then(() => {
       res.redirect('/authors');
     }).catch(err => console.log(`Error deleting author: ${err}`))
+})
+
+router.post("/remove-book/:authorId/:bookId", (req, res, next) => {
+  Author.findById(req.params.authorId)
+    .then(authorFromDB => {
+      authorFromDB.books.pull(req.params.bookId);
+      authorFromDB
+        .save()
+        .then(updatedAuthor => {
+          console.log({updatedAuthor})
+          res.redirect(`authors/details/${updatedAuthor._id}`)
+        }).catch(err => console.log(`Error saving updated author: ${err}`))
+    }).catch(err => console.log(`Error finding author for removing book: ${err}`))
 })
 
 module.exports = router;

@@ -10,6 +10,12 @@ button:hover {
     color: white;
 }
 
+a {
+    margin: 0.125rem;
+    text-decoration: none;
+    color: rgb(74, 187, 240);
+}
+
 nav > a {
     margin: 1rem;
     text-decoration: none;
@@ -33,6 +39,12 @@ nav > a:hover {
 
 .infoCard {
     width: 300px;
+}
+
+.authorsBooks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 img {

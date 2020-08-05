@@ -41,12 +41,17 @@
 
         <h3><u>Books</u></h3>
         <br>
-        <div>
+        <div class="authorsBooks">
             {{#each _doc.books}}
             <div>
-                {{!-- <form action="/authors/remove-book/{{../_doc._id}}/{{_id}}" method="post"><button>Remove</button></form> --}}
+                <h3><u>{{title}}</u></h3>
                 <a href="/books/details/{{_id}}"><img src="{{coverArt}}" alt="Cover art for {{title}}"></a>
-                <h3>{{this.title}}</h3>
+                {{!-- <br> --}}
+                {{!-- <a href="/authors/remove-book/{{../_doc._id}}/{{_id}}"><button>Remove</button></a> --}}
+                <form action="/authors/remove-book/{{../_doc._id}}/{{_id}}" method="post">
+                    <button>Remove</button>
+                </form>
+                <br>
             </div>
             {{/each}}
         </div>
