@@ -16,15 +16,15 @@ router.get('/add-book', (req, res, next) => {
 });
 
 /* POST add a book */
-router.post('/details', (req, res, next) => {
-  console.log({ body: req.body });
+router.post('/add-book', (req, res, next) => {
   Book.create(req.body)
       .then((newBook) => {
-          res.redirect("/books");
+          console.log(newBook);
+          res.redirect(`/books/details/${newBook._id}`);
       }).catch(err => console.log(`Error adding new book: ${err}`))
 });
 
-/*POST book details page*/
+/*GET book details page*/
 router.get('/details/:bookId', (req, res, next) => {
   console.log({ body: req.body });
   Book.findById(req.params.bookId)
@@ -32,13 +32,6 @@ router.get('/details/:bookId', (req, res, next) => {
     res.render("book-views/book-details", { book });
   }).catch(err => console.log(`Error finding book by Id: ${err}`))
   
-})
-
-router.get("/update/:bookId", (req, res, next) => {
-  Book.findById(req.params.bookId)
-    .then(book => {
-      res.render('book-views/book-update', {book});
-    }).catch(err => console.log(`Error finding book by Id: ${err}`))
 })
 
 /*POST book update*/

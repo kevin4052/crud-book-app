@@ -1,11 +1,15 @@
-<form action="/authors/details" method="post">
-    <label for="inputFirstName">Fist name: <input id="inputFirstName" type="text" name="firstName"></label><br>
+<div class="author-wrapper">
+    <h2>Add an Author</h2>
     <br>
-    <label for="inputLastName">Last name: <input id="inputLastName" type="text" name="lastName"></label><br>
-    <br>
-    <label for="inputDatOfBirth">DOB: <input id="inputDatOfBirth" type="text" name="dob"></label><br>
-    <br>
-    <label for="inputPicture">Picture: <input id="inputPicture" type="text" name="picture"></label><br>
-    <br>
-    <button>add book</button>
-</form>
+    <form action="/authors/add-author" method="post">
+        <label for="inputFirstName">Fist name: <input id="inputFirstName" type="text" name="firstName" placeholder="John"></label><br>
+        <br>
+        <label for="inputLastName">Last name: <input id="inputLastName" type="text" name="lastName" placeholder="Doe"></label><br>
+        <br>
+        <label for="inputDatOfBirth">DOB: <input id="inputDatOfBirth" type="text" name="dob" placeholder="mm/dd/yyyy"></label><br>
+        <br>
+        <label for="inputPicture">Picture: <input id="inputPicture" type="text" name="picture"></label><br>
+        <br>
+        <button>add book</button>
+    </form>
+</div>

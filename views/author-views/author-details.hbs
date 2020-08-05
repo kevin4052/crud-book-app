@@ -1,27 +1,44 @@
-<h1>{{ author.firstName }} {{ author.lastName }}</h1>
-<h4>BOD: {{ author.dob }}</h4>
-<img src="{{ author.picture }}" alt="Picture of {{ author.firstName }} {{ author.lastName }}">
+<div class="author-wrapper">
 
-<div>
-    <form action="/authors/delete/{{ author._id }}" method="post">
-    <button>Delete</button>
-    </form>
-    {{!-- <form action="/authors/update/{{ author._id }}" method="post">
-    <button>Update</button>
-    </form> --}}
+    <h2>{{ _doc.firstName }} {{ _doc.lastName }}</h2>
+
+    {{#if edit}}
+        <form action="/authors/update/{{_doc._id}}" method="post">
+            <label for="inputFirstName">Fist name: <input id="inputFirstName" type="text" name="firstName" value="{{_doc.firstName}}"></label><br>
+            <br>
+            <label for="inputLastName">Last name: <input id="inputLastName" type="text" name="lastName" value="{{_doc.lastName}}"></label><br>
+            <br>
+            <label for="inputDatOfBirth">DOB: <input id="inputDatOfBirth" type="text" name="dob" value="{{_doc.dob}}"></label><br>
+            <br>
+            <label for="inputPicture">Picture: <input id="inputPicture" type="text" name="picture" value="{{_doc.picture}}"></label><br>
+            <br>
+            <div>
+                {{#each books}}
+                    <div>
+                        <input id="input{{@index}}" name="movies" type="checkbox" value="{{_id}}">
+                        <label for="input{{@index}}">{{title}}</label>
+                    </div>
+                {{/each}}
+            </div>
+            <button>Update</button>
+        </form>
+        <br>
+    {{else}}
+
+        <h4>BOD: {{ _doc.dob }}</h4>
+        <img src="{{ _doc.picture }}" alt="Picture of {{ _doc.firstName }} {{ _doc.lastName }}">
+
+        <div>
+            <form action="/authors/delete/{{ _doc._id }}" method="post">
+            <button>Delete</button>
+            </form>
+            <form action="/authors/details/edit/{{_doc._id}}" method="get">
+            <button>Edit Details</button>
+            </form>
+        </div>
+            
+        <br>
+    {{/if}}
 </div>
-<br>
-<hr>
-<div>
-    <form action="/authors/update/{{author._id}}" method="post">
-        <label for="inputFirstName">Fist name: <input id="inputFirstName" type="text" name="firstName" value="{{author.firstName}}"></label><br>
-        <br>
-        <label for="inputLastName">Last name: <input id="inputLastName" type="text" name="lastName" value="{{author.lastName}}"></label><br>
-        <br>
-        <label for="inputDatOfBirth">DOB: <input id="inputDatOfBirth" type="text" name="dob" value="{{author.dob}}"></label><br>
-        <br>
-        <label for="inputPicture">Picture: <input id="inputPicture" type="text" name="picture" value="{{author.picture}}"></label><br>
-        <br>
-        <button>Submit</button>
-    </form>
-</div>
+
+

@@ -1,10 +1,18 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: rgb(37, 37, 37);
+    color: rgb(74, 187, 240);
 }
 
 nav > a {
     margin: 1rem;
+    text-decoration: none;
+    color: rgb(74, 187, 240);
+}
+
+nav > a:hover {
+    color: red;
 }
 
 .container {
@@ -14,11 +22,15 @@ nav > a {
     margin: 0 2rem;
 }
 
+.author-wrapper {
+    margin: 1rem 3rem;
+}
+
 .infoCard {
     width: 300px;
-    /* margin: 1rem; */
 }
 
 img {
     height: 300px;
+    max-width: 300px;
 }
