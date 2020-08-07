@@ -82,7 +82,7 @@ router.post("/remove-book/:authorId/:bookId", (req, res, next) => {
         .save()
         .then(updatedAuthor => {
           console.log({updatedAuthor})
-          res.redirect(`authors/details/${updatedAuthor._id}`)
+          res.redirect(`back`)
         }).catch(err => console.log(`Error saving updated author: ${err}`))
     }).catch(err => console.log(`Error finding author for removing book: ${err}`))
 })

@@ -5,7 +5,7 @@ const Book = require("../../models/books");
 router.get('/', (req, res, next) => {
   Book.find()
     .then(allBooks => {
-      // console.log(allBooks);
+      console.log(allBooks);
       res.render('book-views/books', {books: allBooks})
   }).catch(err => console.log(`Error find all books: ${err}`))
 })
