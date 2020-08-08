@@ -76,9 +76,28 @@ router.post("/update/:authorId", (req, res, next) => {
     .populate('books')
     .then(updatedAuthor => {
 
+      Book.find({ _id: { $in: updatedAuthor.books } })
+        .then(async (booksArray) => {
+
+          if (booksArray.length === 0){
+
+            console.log({ updatedAuthor });
+            res.redirect(`/authors/details/${updatedAuthor._id}`);
+
+          } else{
+
+            await booksArray.forEach(async (book) => {
+              if(!book.authors.includes(req.params.authorId)){
+                book.authors.push(req.params.authorId);
+                await book.save();
+              }
+  
               console.log({ updatedAuthor });
               res.redirect(`/authors/details/${updatedAuthor._id}`);
-
+  
+            })
+          }
+        }).catch(err => console.log(`Error finding book ids in author: ${err}`))
     }).catch(err => console.log(`Error updating author: ${err}`))
 })
 
@@ -103,9 +122,19 @@ router.post("/remove-book/:authorId/:bookId", (req, res, next) => {
         .save()
         .then(updatedAuthor => {
 
-          console.log({updatedAuthor})
-          res.redirect(`back`)
-          
+          Book.findById(req.params.bookId)
+            .then(bookToRemoveAuthor => {
+
+              bookToRemoveAuthor.authors.pull(updatedAuthor._id);
+              bookToRemoveAuthor
+                .save()
+                .then(updatedAuthor => {
+
+                  console.log({updatedAuthor})
+                  res.redirect(`back`)
+
+                })
+            }).catch(err => console.log(`Error finding book to remove from author: ${err}`))
         }).catch(err => console.log(`Error saving updated author: ${err}`))
     }).catch(err => console.log(`Error finding author for removing book: ${err}`))
 })
