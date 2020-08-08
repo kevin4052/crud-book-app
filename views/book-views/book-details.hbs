@@ -1,25 +1,63 @@
-<h1>{{ book.title }}</h1>
-<h4>Author: {{ book.authors }}</h4>
-<h4>Published: {{ book.published }}</h4>
-<h4>Genre: {{ book.genre }}</h4>
-<img src="{{ book.coverArt }}" alt="">
+<div class="author-wrapper">
 
-<div>
-    <form action="/books/delete/{{ book._id }}" method="post">
-    <button>Delete</button>
-    </form>
-    <form action="/books/update/{{ book._id }}" method="post">
-    <button>Update</button>
-    </form>
+    <h2>{{ _doc.title }}</h2>
+
+    {{#if edit}}
+        <form action="/books/update/{{_doc._id}}" method="post">
+            <label for="titleInput">Title: <input id="titleInput" type="text" name="title" value="{{_doc.title}}"></label><br>
+            <br>
+            <label for="publishedInput">Published: <input id="publishedInput" type="text" name="published" value="{{_doc.published}}"></label><br>
+            <br>
+            <label for="genreInput">Picture: <input id="genreInput" type="text" name="genre" value="{{_doc.genre}}"></label><br>
+            <br>
+            <div>
+                {{#each authors}}
+                    <div>
+                        <input id="input{{@index}}" name="authors" type="checkbox" value="{{_id}}">
+                        <label for="input{{@index}}">{{firstName}} {{lastName}}</label>
+                    </div>
+                {{/each}}
+            </div>
+            <br>
+            <button>Update</button>
+        </form>
+        <br>
+    {{else}}
+        {{#if _doc.coverArt}}
+        <img src="{{ _doc.coverArt }}" alt="Picture of {{ _doc.title }}">
+        {{else}}
+        <img src="/images/default.jpg" alt="Picture of {{ _doc.title }}">
+        {{/if}}
+        <h4>Published: {{ _doc.published }}</h4>
+        <h4>Genre: {{ _doc.genre }}</h4>
+
+        <div>
+            <form action="/books/delete/{{ _doc._id }}" method="post">
+            <button>Delete</button>
+            </form>
+            <form action="/books/details/edit/{{_doc._id}}" method="get">
+            <button>Edit Details</button>
+            </form>
+        </div>
+
+        <br>
+
+        <h3><u>Authors</u></h3>
+        <br>
+        <div class="authorsBooks">
+            {{#each _doc.authors}}
+            <div>
+                <h3><u>{{firstName}} {{lastName}}</u></h3>
+                <a href="/authors/details/{{_id}}"><img src="{{picture}}" alt="Picture for {{firstName}} {{lastName}}"></a>
+                <form action="/books/remove-author/{{../_doc._id}}/{{_id}}" method="post">
+                    <button>Remove</button>
+                </form>
+                <br>
+            </div>
+            {{/each}}
+        </div>
+
+    {{/if}}
 </div>
 
-<div>
-    <form action="/books/update/{{book._id}}" method="post">
-        <label for="bookTitle">Book title: <input id="bookTitle" name="title" type="text" value="{{ book.title }}"></label><br><br>
-        {{!-- <label for="bookAuthor">Author: <input id="bookAuthor" name="authors" type="text" value="{{ book.author }}"></label><br><br> --}}
-        <label for="bookPublished">Published date: <input id="bookPublished" name="published" type="text" value="{{ book.published }}"></label><br><br>
-        <label for="bookGenre">Genre: <input id="bookGenre" name="genre" type="text" value="{{ book.genre }}"></label><br><br>
-        <label for="bookCoverArt">Cover art: <input id="bookCoverArt" name="coverArt" type="text" value="{{ book.coverArt }}"></label><br><br>
-        <button>Submit</button>
-    </form>
-</div>
+

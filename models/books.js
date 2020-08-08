@@ -13,7 +13,7 @@ const bookSchema = new Schema(
         published: { type: String },
         genre: { 
             type: [{type: String}],
-            enum: ["Fantasy", "Drama", "fiction", "SciFi"]
+            // enum: ["Fantasy", "Drama", "fiction", "SciFi"]
         },
         coverArt: { type: String }
     },

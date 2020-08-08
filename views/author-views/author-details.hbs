@@ -24,8 +24,11 @@
         </form>
         <br>
     {{else}}
-
+        {{#if _doc.picture}}
         <img src="{{ _doc.picture }}" alt="Picture of {{ _doc.firstName }} {{ _doc.lastName }}">
+        {{else}}
+        <img src="/images/default-picture.png" alt="Picture of {{ _doc.firstName }} {{ _doc.lastName }}">
+        {{/if}}
         <h4>BOD: {{ _doc.dob }}</h4>
 
         <div>
