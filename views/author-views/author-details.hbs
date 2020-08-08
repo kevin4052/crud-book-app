@@ -46,8 +46,6 @@
             <div>
                 <h3><u>{{title}}</u></h3>
                 <a href="/books/details/{{_id}}"><img src="{{coverArt}}" alt="Cover art for {{title}}"></a>
-                {{!-- <br> --}}
-                {{!-- <a href="/authors/remove-book/{{../_doc._id}}/{{_id}}"><button>Remove</button></a> --}}
                 <form action="/authors/remove-book/{{../_doc._id}}/{{_id}}" method="post">
                     <button>Remove</button>
                 </form>

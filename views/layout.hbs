@@ -8,10 +8,19 @@
 </head>
 <body>
     <nav>
-        <a href="/books">Books</a>
-        <a href="/books/add-book">Add a book</a>
-        <a href="/authors">Authors</a>
-        <a href="/authors/add-author">Add an authors</a>
+        <div>
+            <a href="/">Home</a>
+            <a href="/books">Books</a>
+            <a href="/authors">Authors</a>
+        </div>
+        <div id="searchBar">
+            <form action="/search" method="get">
+                <label for="searchQueryInput">
+                    <input id="searchQueryInput" name="query" type="text" placeholder="search">
+                    <button>Search</button>
+                </label>
+            </form>
+        </div>
     </nav>
     {{{ body }}}
 </body>

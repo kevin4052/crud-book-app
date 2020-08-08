@@ -11,19 +11,30 @@ button:hover {
 }
 
 a {
-    margin: 0.125rem;
+    margin: 0.5rem;
     text-decoration: none;
     color: rgb(74, 187, 240);
 }
 
-nav > a {
-    margin: 1rem;
-    text-decoration: none;
-    color: rgb(74, 187, 240);
-}
-
-nav > a:hover {
+a:hover {
     color: red;
+}
+
+nav {
+    height: 3vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid black;
+    box-shadow: 2px 2px 5px black;
+}
+
+#searchBar {
+    margin: 0 5rem 0 0px;
+}
+
+#searchBar input {
+    width: 20vw;
 }
 
 .container {
@@ -31,6 +42,11 @@ nav > a:hover {
     justify-content: space-evenly;
     flex-wrap: wrap;
     margin: 0 2rem;
+}
+
+.searchResultsContainer{
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .author-wrapper {
