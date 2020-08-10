@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Author = require('../models/authors');
 const Book = require('../models/books');
+const User = require('../models/user');
 
 const authors = [
     {
@@ -71,31 +72,41 @@ const books = [
     }
 ];
 
-mongoose
-    .connect("mongodb://localhost/crud-books-app", {
-        useCreateIndex: true,
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false,
-    })
-    .then((x) => {
-        console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
+const users = [
+    {
+        username: 'guest',
+        email: 'guest@guest.com',
+        passwordHash: '$2b$10$3OXevQc1rqD1lwSLAaQKxOYUDHW3VUP88odcKZVAIQeqX3lA06fJK' //1234
+    }
+];
 
-        Author.collection.drop();
-        Book.collection.drop();
+require("../config/mongoose-setup");
 
-        Author.create(authors)
-            .then(authorsFromDB => {
-                console.log({ authorsFromDB });
-            }).catch(err => console.log(`Error seeding database with authors: ${err}`))
+Author.collection.drop();
+Book.collection.drop();
+User.collection.drop();
+
+Author.create(authors)
+    .then(authorsFromDB => {
+
+        console.log({ authorsFromDB });
 
         Book.create(books)
             .then(booksFromDB => {
+
                 console.log({ booksFromDB });
+
+                User.create(users)
+                    .then(usersFromDB => {
+
+                        console.log({ usersFromDB });
+
+                        setTimeout(() => {
+                            mongoose.disconnect();
+                        }, 2000);
+                        
+                    }).catch(err => console.log(`Error seeding database with users: ${err}`))
+
             }).catch(err => console.log(`Error seeding database with books: ${err}`))
 
-        setTimeout(() => {
-            mongoose.disconnect();
-        }, 10000);
-    })
-    .catch((err) => console.error("Error connecting to mongo", err));
+    }).catch(err => console.log(`Error seeding database with authors: ${err}`))
