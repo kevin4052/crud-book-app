@@ -21,7 +21,7 @@ a:hover {
 }
 
 nav {
-    height: 3vw;
+    height: 3rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -66,4 +66,19 @@ nav {
 img {
     height: 300px;
     max-width: 300px;
+}
+
+/* sign up form */
+
+#signUpForm {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    padding: 2rem 3rem 3rem;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 5rem);
+    background-color: rgb(39, 39, 39);
+    border-radius: 1rem;
+    box-shadow: 1px 3px 5px black;
 }
