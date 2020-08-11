@@ -1,13 +1,11 @@
 <div id="signUpForm">
     <h3>Login form</h3>
     <form action="/user/login" method="POST">
-        <label>username: <input type="text" name="username"></label>
-        <br><br>
         <label>email: <input type="text" name="email"></label>
         <br><br>
         <label>password: <input type="text" name="password"></label>
         <br><br>
-        <button>create account</button>
+        <button>login</button>
     </form>
 
     {{#if errorMessage}}
