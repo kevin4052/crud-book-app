@@ -25,7 +25,7 @@ router.post('/signup', (req, res, next) => {
     if (!regex.test(password)) {
         res
         .status(500)
-        .render('auth/signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
+        .render('auth-views/auth-signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
         return;
     }
 
@@ -75,7 +75,7 @@ router.post('/login', (req, res, next) => {
     }
 
     User
-        .find({ email })
+        .findOne({ email })
         .then(userFromDB => {
 
             // console.log({userFromDB});
@@ -88,7 +88,8 @@ router.post('/login', (req, res, next) => {
             } else if (bcryptjs.compare(password, userFromDB.hashedPassword)){
 
                 console.log(`User validated: ${userFromDB}`);
-                res.render('user-views/user-profile', {user: userFromDB});
+                // res.render('user-views/user-profile', {user: userFromDB});
+                res.redirect(`../user/user-profile/${userFromDB._id}`);
                 return;
 
             } else {
