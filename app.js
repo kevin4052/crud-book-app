@@ -45,7 +45,8 @@ app.use("/", require("./routes/index"));
 app.use("/books", require("./routes/book-routes/books"));
 app.use("/authors", require("./routes/author-routes/authors"));
 app.use("/search", require("./routes/search-routes/search"));
-app.use("/user", require("./routes/auth-routes/auth.route"));
+app.use("/auth", require("./routes/auth-routes/auth.route"));
+app.use("/user", require("./routes/user-routes/user.route"));
 
 // =================== END ROUTES ===================
 
