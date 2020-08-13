@@ -1,13 +1,26 @@
 <h1>Your books</h1>
-<a href="/books/add-book">Add a book</a>
+
+{{#if user}}
+    <a href="/books/add-book">Add a book</a>
+{{/if}}
+
 <div class="container">
       {{#each books}}
         <div class="infoCard">
             <h3>{{ this.title }}</h3>
+
             {{#if this.coverArt}}
-            <a href="/books/details/{{ this._id }}"><img src="{{ this.coverArt }}" alt="{{ this.title }} cover art"></a>
+                <a href="/books/details/{{ this._id }}"><img src="{{ this.coverArt }}" alt="{{ this.title }} cover art"></a>
             {{else}}
-            <a href="/books/details/{{ this._id }}"><img src="/images/default.jpg" alt="{{ this.title }} cover art"></a>
+                <a href="/books/details/{{ this._id }}"><img src="/images/default.jpg" alt="{{ this.title }} cover art"></a>
+            {{/if}}
+
+            {{#if ../user}}
+                <div>
+                    <form action="/user/add-book-favorite/{{ this._id }}" method="post">
+                        <button name="books">add to favorites</button>
+                    </form>
+                </div>
             {{/if}}
         </div>
     {{/each}}  

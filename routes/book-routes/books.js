@@ -34,12 +34,12 @@ router.post('/add-book', (req, res, next) => {
 router.get('/details/edit/:bookId', (req, res, next) => {
 
   Book.findById(req.params.bookId)
-    .then(bookfromDB => {
+    .then(bookFromDB => {
 
       Author.find()
         .then(authors => {
           const data = {
-            ...bookfromDB,
+            ...bookFromDB,
             authors,
             edit: true
           }
@@ -55,10 +55,10 @@ router.get('/details/:bookId', (req, res, next) => {
 
   Book.findById(req.params.bookId)
     .populate('authors')
-    .then(bookfromDB => {
+    .then(bookFromDB => {
 
       const data = {
-        ...bookfromDB,
+        ...bookFromDB,
         edit: false 
       };
 

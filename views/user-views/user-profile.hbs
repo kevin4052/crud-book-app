@@ -4,6 +4,19 @@
   <button>
     <a href="/user/user-profile">Reload the page</a>
   </button>
+
+  <div>
+    <h3>wish list</h3>
+    <ul>
+      {{#each user.books}}
+      <li>{{ this.title }}</li>
+    {{/each}}
+    </ul>
+    
+  </div>
+
 {{else}}
   <p>Still no logged in user, sorry!</p>
 {{/if}}
+
+

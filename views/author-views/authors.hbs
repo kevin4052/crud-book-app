@@ -1,13 +1,15 @@
 <h1>Your Authors</h1>
-<a href="/authors/add-author">Add an author</a>
+{{#if user}}
+    <a href="/authors/add-author">Add an author</a>
+{{/if}}
 <div class="container">
       {{#each authors}}
         <div class="infoCard">
             <h3>{{ this.firstName }} {{ this.lastName }}</h3>
             {{#if this.picture}}
-            <a href="/authors/details/{{ this._id }}"><img src="{{ this.picture }}" alt="picture of {{ this.firstName }} {{ this.lastName }}"></a>
+                <a href="/authors/details/{{ this._id }}"><img src="{{ this.picture }}" alt="picture of {{ this.firstName }} {{ this.lastName }}"></a>
             {{else}}
-            <a href="/authors/details/{{ this._id }}"><img src="/images/default-picture.png" alt="picture of {{ this.firstName }} {{ this.lastName }}"></a>
+                <a href="/authors/details/{{ this._id }}"><img src="/images/default-picture.png" alt="picture of {{ this.firstName }} {{ this.lastName }}"></a>
             {{/if}}       
         </div>
     {{/each}}  
