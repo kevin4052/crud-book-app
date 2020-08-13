@@ -30,10 +30,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // ========== EXPRESS VIEW ENGINE SET UP ============
 
+app.use(bindSessionUser);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
-app.use(bindSessionUser);
 
 // ======= END EXPRESS VIEW ENGINE SET UP ===========
 
