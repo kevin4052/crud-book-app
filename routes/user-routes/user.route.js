@@ -1,21 +1,19 @@
 const express = require('express');
 const router  = express.Router();
 const mongoose = require('mongoose');
+
 const User = require('../../models/user');
 
 // GET user profile page
-router.get('/user-profile/:id', (req, res) => {
-    const userId = req.params.id;
+router.get('/user-profile', (req, res) => {
 
-    User
-        .findById(userId)
-        .then(userFromDB => {
-
-            console.log(`from profile route: ${userFromDB}`);
-            res.render('user-views/user-profile.hbs', { user: userFromDB });
-            
-        }).catch(error => console.log(error))
+    res.render('user-views/user-profile.hbs');
     
 });
+
+router.post('/logout', (req, res, next) => {
+    req.session.destroy();
+    res.redirect('/');
+})
 
 module.exports = router;

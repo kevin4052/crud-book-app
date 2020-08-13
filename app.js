@@ -9,6 +9,10 @@ const path = require("path");
 
 const app = express();
 
+require('./config/session.config')(app);
+
+const bindSessionUser = require('./config/user-in-view-local');
+
 // ============= END FILE IMPORTS ===================
 
 // ========== MONGOOSE CONNECTION SETUP =============
@@ -29,13 +33,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
+app.use(bindSessionUser);
 
 // ======= END EXPRESS VIEW ENGINE SET UP ===========
 
 // ============== GLOBAL VARIABLES ==================
 
 // default value for title local
-app.locals.title = "CRUD Book App";
+app.locals.title = "Express Book App";
 
 // ============ END GLOBAL VARIABLES ================
 

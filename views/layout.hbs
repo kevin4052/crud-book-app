@@ -8,13 +8,26 @@
 </head>
 <body>
     <nav>
-        <div>
-            <a href="/">Home</a>
-            <a href="/auth/signup">Sign up</a>
-            <a href="/auth/login">Login</a>
-            <a href="/books">Books</a>
-            <a href="/authors">Authors</a>
-        </div>
+        {{#if user}}
+            <div>
+                <a href="/">Home</a>
+                <a href="/books">Books</a>
+                <a href="/authors">Authors</a>
+                <a href="/user/user-profile">Profile</a>
+                <span>
+                    <form action="/user/logout" method="post">
+                        <button>Logout</button>
+                    </form>
+                </span>
+                
+            </div>
+        {{else}}
+            <div>
+                <a href="/">Home</a>
+                <a href="/auth/signup">Sign up</a><span> | </span>
+                <a href="/auth/login">Login</a>
+            </div>
+        {{/if}}
         <div id="searchBar">
             <form action="/search" method="get">
                 <label for="searchQueryInput">

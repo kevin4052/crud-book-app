@@ -76,7 +76,7 @@ const users = [
     {
         username: 'guest',
         email: 'guest@guest.com',
-        passwordHash: '$2b$10$3OXevQc1rqD1lwSLAaQKxOYUDHW3VUP88odcKZVAIQeqX3lA06fJK' //1234
+        passwordHash: '$2b$10$VHIflrSXsXdfARAA1.Ir7up2WCwNGhQZmb9TT/zMnfbu3H9RLIMZS' //1Password
     }
 ];
 

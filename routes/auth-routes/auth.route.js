@@ -47,7 +47,7 @@ router.post('/signup', (req, res, next) => {
         .catch(error => {
             if (error instanceof mongoose.Error.ValidationError) {
                 res.status(500).render('auth-views/auth-signup', { errorMessage: error.message });
-            } else if (error.code === 11000) {
+            } else if (error === 11000) {
                 res.status(500).render('auth-views/auth-signup', {
                    errorMessage: 'Username and email need to be unique. Either username or email is already used.'
                 });
@@ -78,18 +78,18 @@ router.post('/login', (req, res, next) => {
         .findOne({ email })
         .then(userFromDB => {
 
-            // console.log({userFromDB});
+            // console.log(password, userFromDB.passwordHash);
 
             if(!userFromDB){
 
                 res.render('auth-views/auth-login.hbs', {errorMessage: "Email is not recognized."});
                 return;
 
-            } else if (bcryptjs.compare(password, userFromDB.hashedPassword)){
+            } else if (bcryptjs.compareSync(password, userFromDB.passwordHash)){
 
-                console.log(`User validated: ${userFromDB}`);
-                // res.render('user-views/user-profile', {user: userFromDB});
-                res.redirect(`../user/user-profile/${userFromDB._id}`);
+                req.session.loggedInUser = userFromDB;
+                // console.log(`User validated: ${userFromDB}`);
+                res.redirect(`../user/user-profile`);
                 return;
 
             } else {
