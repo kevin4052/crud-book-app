@@ -18,7 +18,7 @@ router.get('/user-profile', guardRoute, (req, res) => {
         .then(userFromDB => {
 
             console.log({userFromDB});
-            req.session.loggedInUser = userFromDB;
+            res.locals.user = userFromDB;
             res.render('user-views/user-profile.hbs');
 
         }).catch(err => console.log(err));
